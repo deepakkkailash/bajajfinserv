@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <style>
+        #Theform{
+            display:flex;
+            flex-direction:column;
+            gap:10px;
+            position:fixed;
+            top:30%;
+            left:40%;
+            background-color:#FFE5B4;
+            padding:10px;
+            border-radius:10px;
+            align-items:center
+        }
+        body{
+            background-image:linear-gradient(to right, skyblue, white);
+            background-repeat:no-repeat;
+            height:100vh;
+        }
+        #Theform > .textinp{
+            background-color:white;
+            font-family: monospace;
+            color:white;
+            font-weight:bolder;
+            padding:10px;
+            border-radius:8px;
+        }
+        #Theform > .textinp:focus{
+            background-color: black;
+        }
+
+
+        #submitbtn{
+            width:40%;
+            background-color:green;
+            padding:10px;
+            color:white;
+            font-weight:bolder;
+            border-radius:10px;
+        }
+
+        #selects{
+            padding:10px;
+
+        }
+        #selects > option{
+            border:2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <form id="Theform" method="post" action="{{url_for('compute')}}">
+        <input id="main" class='textinp' type="text" id="jsoninp" name="json">
+        <select id="multi" name="multiple"  multiple>
+            <option>Alphabets</option>
+            <option>Numbers</option>
+            <option>HighestAlphabet</option>
+        </select>
+        <input id="submitbtn" type="submit">
+    </form>
+
+<script>
+    function isvalidjson(param){
+        try{
+            JSON.parse(param);
+            console.log(JSON.parse(param));
+            return true;
+        }
+        catch (e) {
+            console.log('err');
+            return false
+        }
+    }
+
+    let submit = document.getElementById('submitbtn');
+    let inp = document.getElementById('main');
+    let form = document.getElementById('Theform')
+
+    form.addEventListener('submit',(event)=>{
+
+        if(isvalidjson(inp.value)){
+                null;
+         }
+         else{
+               event.preventDefault();
+               window.alert('invalid json input found')
+            }
+    });
+    submit.addEventListener('click',(event)=>{
+
+
+        if(isvalidjson(inp.value)){
+                null;
+         }
+         else{
+               event.preventDefault();
+               window.alert('invalid json input found')
+            }
+
+    });
+</script>
+</body>
+</html>
